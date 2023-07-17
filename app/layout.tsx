@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import ToasterProvider from "./providers/ToasterProvider";
 
 const poppins = Poppins({
 	subsets: ["latin"],
@@ -16,6 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang='en'>
 			<body className={`w-screen h-screen flex justify-center bg-[#000E08] ${poppins.className}`}>
+				<ToasterProvider />
 				<div className='w-full h-full md:w-1/4'>{children}</div>
 			</body>
 		</html>

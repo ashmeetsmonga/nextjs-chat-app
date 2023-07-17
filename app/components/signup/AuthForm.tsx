@@ -1,12 +1,27 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const AuthForm = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
+	const [isLoading, setIsLoading] = useState(false);
+
+	const onSubmit = () => {
+		const toastID = toast.loading("Registering user");
+		setIsLoading(true);
+		axios
+			.post("/api/register", { name, email, password })
+			.then((data) => {
+				toast.success("Successfully registered", { id: toastID });
+			})
+			.catch(() => toast.error("Someting went wrong", { id: toastID }))
+			.finally(() => setIsLoading(false));
+	};
 
 	return (
 		<div className='w-full h-full flex flex-col gap-8'>
@@ -47,7 +62,11 @@ const AuthForm = () => {
 				/>
 			</div>
 			<div className='mt-20'>
-				<button className='w-full text-lg bg-primary-green p-4 text-white rounded-3xl font-semibold'>
+				<button
+					disabled={isLoading}
+					onClick={onSubmit}
+					className='w-full text-lg bg-primary-green p-4 text-white rounded-3xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed'
+				>
 					Sign up
 				</button>
 				<p className='mt-7 text-center text-gray-300'>
