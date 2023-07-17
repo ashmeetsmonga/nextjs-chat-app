@@ -1,10 +1,24 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
+import { signIn } from "next-auth/react";
+import { toast } from "react-hot-toast";
 
 const AuthForm = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [isLoading, setIsLoading] = useState(false);
+
+	const onSubmit = () => {
+		const toastID = toast.loading("Logging in");
+		setIsLoading(true);
+		signIn("credentials", { email, password, redirect: false })
+			.then((cb) => {
+				if (cb?.error) toast.error("Invalid Credentials", { id: toastID });
+				if (cb?.ok && !cb?.error) toast.success("Logged in", { id: toastID });
+			})
+			.finally(() => setIsLoading(false));
+	};
 
 	return (
 		<div className='w-full h-full flex flex-col gap-8'>
@@ -27,7 +41,11 @@ const AuthForm = () => {
 				/>
 			</div>
 			<div className='mt-20'>
-				<button className='w-full text-lg bg-primary-green p-4 text-white rounded-3xl font-semibold'>
+				<button
+					disabled={isLoading}
+					onClick={onSubmit}
+					className='w-full text-lg bg-primary-green p-4 text-white rounded-3xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed'
+				>
 					Log In
 				</button>
 				<p className='mt-7 text-center text-gray-300'>
