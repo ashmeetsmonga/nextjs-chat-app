@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang='en'>
-			<body className={`w-screen h-screen flex justify-center bg-black ${poppins.className}`}>
+			<body className={`w-screen h-screen flex justify-center bg-[#000E08] ${poppins.className}`}>
 				<div className='w-full h-full md:w-1/4'>{children}</div>
 			</body>
 		</html>
