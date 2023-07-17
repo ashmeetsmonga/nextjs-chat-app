@@ -32,8 +32,8 @@ const AuthForm = () => {
 				</button>
 				<p className='mt-7 text-center text-gray-300'>
 					Do not have an account?{" "}
-					<Link href={"signin"} className='font-semibold text-white'>
-						Signin
+					<Link href={"signup"} className='font-semibold text-white'>
+						Signup
 					</Link>
 				</p>
 			</div>
