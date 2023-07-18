@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Home() {
 	return (
-		<main className='w-full h-full flex justify-between flex-col gap-8 bg-gradient-to-br from-purple-900 to-black text-white p-10'>
+		<main className='w-full h-full flex justify-between flex-col gap-8 bg-gradient-to-br from-primary-green to-black text-white p-10'>
 			<div>
 				<h1 className='font-bold text-5xl text-center mb-7 uppercase'>Msgs</h1>
 				<h2 className='text-7xl leading-tight'>
