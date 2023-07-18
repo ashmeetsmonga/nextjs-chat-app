@@ -1,8 +1,10 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const AuthForm = () => {
 	const [name, setName] = useState("");
@@ -11,6 +13,13 @@ const AuthForm = () => {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
 
+	const session = useSession();
+	const router = useRouter();
+
+	useEffect(() => {
+		if (session.status === "authenticated") router.push("/users");
+	}, [session.status, router]);
+
 	const onSubmit = () => {
 		const toastID = toast.loading("Registering user");
 		setIsLoading(true);
@@ -18,6 +27,7 @@ const AuthForm = () => {
 			.post("/api/register", { name, email, password })
 			.then((data) => {
 				toast.success("Successfully registered", { id: toastID });
+				signIn("credentials", { email, password });
 			})
 			.catch(() => toast.error("Someting went wrong", { id: toastID }))
 			.finally(() => setIsLoading(false));

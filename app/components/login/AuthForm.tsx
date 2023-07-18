@@ -22,7 +22,10 @@ const AuthForm = () => {
 		signIn("credentials", { email, password, redirect: false })
 			.then((cb) => {
 				if (cb?.error) toast.error("Invalid Credentials", { id: toastID });
-				if (cb?.ok && !cb?.error) toast.success("Logged in", { id: toastID });
+				if (cb?.ok && !cb?.error) {
+					toast.success("Logged in", { id: toastID });
+					router.push("/users");
+				}
 			})
 			.finally(() => setIsLoading(false));
 	};
