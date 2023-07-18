@@ -1,13 +1,20 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
-import { signIn } from "next-auth/react";
+import React, { useEffect, useState } from "react";
+import { signIn, useSession } from "next-auth/react";
 import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const AuthForm = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
+	const session = useSession();
+	const router = useRouter();
+
+	useEffect(() => {
+		if (session.status === "authenticated") router.push("/users");
+	}, [session.status, router]);
 
 	const onSubmit = () => {
 		const toastID = toast.loading("Logging in");
