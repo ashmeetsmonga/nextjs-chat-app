@@ -17,10 +17,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang='en'>
-			<body className={`w-screen h-screen flex justify-center bg-[#000E08] ${poppins.className}`}>
+			<body
+				className={`w-screen h-screen overflow-x-hidden flex justify-center bg-[#000E08] ${poppins.className}`}
+			>
 				<AuthContext>
 					<ToasterProvider />
-					<div className='w-full h-full md:w-1/4'>{children}</div>
+					<div className='w-full h-full md:w-1/4 min-w-[500px]'>{children}</div>
 				</AuthContext>
 			</body>
 		</html>

@@ -1,16 +1,19 @@
 import React from "react";
+import { getUsers } from "../actions/getUsers";
+import Bottombar from "./components/Bottombar";
 import Topbar from "./components/Topbar";
 import User from "./components/User";
 
-const Users = () => {
+const Users = async () => {
+	const users = await getUsers();
+
 	return (
-		<div className='w-full h-full'>
+		<div className='relative w-full h-full'>
 			<Topbar />
-			<User />
-			<User />
-			<User />
-			<User />
-			<User />
+			{users.map((user) => (
+				<User key={user.id} name={user.name as string} />
+			))}
+			<Bottombar />
 		</div>
 	);
 };
