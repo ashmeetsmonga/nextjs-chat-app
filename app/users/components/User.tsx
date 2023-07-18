@@ -3,7 +3,7 @@ import { BiSolidUserCircle } from "react-icons/bi";
 
 const User = () => {
 	return (
-		<div className='w-full flex justify-between p-7 text-white border-b border-primary-green'>
+		<div className='w-full flex justify-between p-7 text-white'>
 			<div className='flex gap-2 items-center'>
 				<BiSolidUserCircle size={70} />
 
