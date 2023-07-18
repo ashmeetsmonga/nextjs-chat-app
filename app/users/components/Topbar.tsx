@@ -4,7 +4,7 @@ import { BiSolidUserCircle } from "react-icons/bi";
 
 const Topbar = () => {
 	return (
-		<div className='w-full py-10 px-5 bg-primary-green text-white flex justify-between items-center'>
+		<div className='w-full p-10 bg-primary-green text-white flex justify-between items-center'>
 			<div>
 				<BsSearch size={30} />
 			</div>
