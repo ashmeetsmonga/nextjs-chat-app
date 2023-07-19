@@ -7,7 +7,7 @@ interface UserProps {
 
 const User: React.FC<UserProps> = ({ name }) => {
 	return (
-		<div className='w-full flex justify-between p-7 text-white'>
+		<div className='w-full flex justify-between p-7 text-white cursor-pointer'>
 			<div className='flex gap-2 items-center'>
 				<BiSolidUserCircle size={70} />
 
