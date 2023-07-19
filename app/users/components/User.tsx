@@ -1,18 +1,27 @@
+"use client";
+
+import { User } from "@prisma/client";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { BiSolidUserCircle } from "react-icons/bi";
 
 interface UserProps {
-	name: string;
+	user: User;
 }
 
-const User: React.FC<UserProps> = ({ name }) => {
+const User: React.FC<UserProps> = ({ user }) => {
+	const router = useRouter();
+
 	return (
-		<div className='w-full flex justify-between p-7 text-white cursor-pointer'>
+		<div
+			onClick={() => router.push(`conversations/${user.id}`)}
+			className='w-full flex justify-between p-7 text-white cursor-pointer'
+		>
 			<div className='flex gap-2 items-center'>
 				<BiSolidUserCircle size={70} />
 
 				<div className='flex flex-col gap-0.5'>
-					<p className='text-2xl'>{name}</p>
+					<p className='text-2xl'>{user.name}</p>
 					<p className='text-gray-400'>How are you today?</p>
 				</div>
 			</div>

@@ -11,7 +11,7 @@ const Users = async () => {
 		<div className='relative w-full h-full'>
 			<Topbar />
 			{users.map((user) => (
-				<User key={user.id} name={user.name as string} />
+				<User key={user.id} user={user} />
 			))}
 			<Bottombar />
 		</div>
