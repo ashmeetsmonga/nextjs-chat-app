@@ -5,6 +5,7 @@ import { Conversation } from "@prisma/client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
+import MessageList from "./components/MessageList";
 
 const Conversation = ({ params: { userID } }: { params: { userID: string } }) => {
 	const [conversation, setConversation] = useState<Conversation | null>(null);
@@ -18,6 +19,7 @@ const Conversation = ({ params: { userID } }: { params: { userID: string } }) =>
 	return (
 		<div className='w-full h-full'>
 			<Header />
+			<MessageList />
 		</div>
 	);
 };
