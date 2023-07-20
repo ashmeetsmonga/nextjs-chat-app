@@ -8,7 +8,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
 	return (
-		<div className='relative w-full h-full'>
+		<div className='relative w-full'>
 			<Topbar />
 			{children}
 			<Bottombar />
