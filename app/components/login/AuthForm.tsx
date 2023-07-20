@@ -13,7 +13,7 @@ const AuthForm = () => {
 	const router = useRouter();
 
 	useEffect(() => {
-		if (session.status === "authenticated") router.push("/loggedIn");
+		if (session.status === "authenticated") router.push("/loggedIn/users");
 	}, [session.status, router]);
 
 	const onSubmit = () => {

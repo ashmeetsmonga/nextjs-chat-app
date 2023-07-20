@@ -1,8 +1,6 @@
+import { getUsers } from "@/app/actions/getUsers";
 import React from "react";
-import { getUsers } from "../actions/getUsers";
-import Bottombar from "./components/Bottombar";
-import Topbar from "./components/Topbar";
-import User from "./components/User";
+import User from "../components/User";
 
 const Users = async () => {
 	const users = await getUsers();
