@@ -8,12 +8,10 @@ const Users = async () => {
 	const users = await getUsers();
 
 	return (
-		<div className='relative w-full h-full'>
-			<Topbar />
+		<div className='w-full h-full outline'>
 			{users.map((user) => (
 				<User key={user.id} user={user} />
 			))}
-			<Bottombar />
 		</div>
 	);
 };

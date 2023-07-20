@@ -11,7 +11,7 @@ const Bottombar = () => {
 			</div>
 			<div className='flex flex-col gap-1 items-center text-gray-500'>
 				<IoMdContact size={50} />
-				<p>Contacts</p>
+				<p>Users</p>
 			</div>
 			<div className='flex flex-col gap-1 items-center text-gray-500'>
 				<AiFillSetting size={50} />
