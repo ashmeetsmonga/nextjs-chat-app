@@ -17,7 +17,7 @@ const User: React.FC<UserProps> = ({ user }) => {
 
 	const handleChatWithUser = () => {
 		setChatUser(user);
-		router.push(`conversations/${user.id}`);
+		router.push(`/conversations/${user.id}`);
 	};
 
 	return (

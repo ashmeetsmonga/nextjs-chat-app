@@ -1,11 +1,33 @@
-export const getConversations = async (userID: string) => {
-	const res = await fetch(`/api/conversations`, {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({ userID }),
-	});
-	const data = await res.json();
-	return data;
+import getCurrentUser from "./getCurrentUser";
+import prisma from "@/app/libs/prismadb";
+
+export const getConversations = async () => {
+	const currentUser = await getCurrentUser();
+
+	if (!currentUser?.id) return [];
+
+	try {
+		const conversations = await prisma.conversation.findMany({
+			orderBy: {
+				lastMessageAt: "desc",
+			},
+			where: {
+				userIds: {
+					has: currentUser.id,
+				},
+			},
+			include: {
+				users: true,
+				messages: {
+					include: {
+						sender: true,
+						seen: true,
+					},
+				},
+			},
+		});
+		return conversations;
+	} catch (e: any) {
+		return [];
+	}
 };
