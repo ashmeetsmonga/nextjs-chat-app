@@ -1,5 +1,6 @@
 "use client";
 
+import { useChatUserStore } from "@/app/store/useChatUserStore";
 import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -12,9 +13,16 @@ interface UserProps {
 const User: React.FC<UserProps> = ({ user }) => {
 	const router = useRouter();
 
+	const setChatUser = useChatUserStore((state) => state.setChatUser);
+
+	const handleChatWithUser = () => {
+		setChatUser(user);
+		router.push(`conversations/${user.id}`);
+	};
+
 	return (
 		<div
-			onClick={() => router.push(`conversations/${user.id}`)}
+			onClick={handleChatWithUser}
 			className='w-full flex justify-between p-7 text-white cursor-pointer'
 		>
 			<div className='flex gap-2 items-center'>
