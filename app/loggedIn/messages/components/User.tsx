@@ -45,7 +45,7 @@ const User: React.FC<UserProps> = ({ conversation }) => {
 				{lastMessage?.createdAt && (
 					<p className='text-gray-400'>{format(new Date(lastMessage.createdAt), "p")}</p>
 				)}
-				<div className='bg-red-500 px-3 py-1 rounded-full'>2</div>
+				<div className='bg-red-500 px-3 py-1 rounded-full'>3</div>
 			</div>
 		</div>
 	);
